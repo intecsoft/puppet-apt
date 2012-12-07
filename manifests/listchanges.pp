@@ -4,6 +4,8 @@ class apt::listchanges(
 
   package{ 'apt-listchanges':
     ensure => installed,
+    # populates debconf Database with default values?!
+    notify => Exec['dpkg-reconfigure apt-listchanges'],
   }
 
   apt::listchanges::debconf{ 'apt-listchanges/frontend':
